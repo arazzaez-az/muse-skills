@@ -1,0 +1,26 @@
+name: cloud_browser_preflight
+title: Cloud browser pre-flight
+description: Check whether a cloud-browser task can actually run before claiming progress, and hand a blocked task to the user cleanly.
+category: Work and knowledge
+include_in_prompt: true
+skill_improvement:
+  managed: true
+  status: active
+  evidence_handles:
+  - message:assistant-msg-34869202-5adb-5c5c-a066-17ca1fa75c3f
+  - message:assistant-msg-8d321b12-a4e0-4b41-a0f4-eae055e6de1c
+  - message:assistant-msg-b3f5b3b9-c8c3-9ca5-16c1-3dc5ed72e2cd
+  - message:assistant-msg-0d1d44fa-c8d8-0329-77c8-77ba473cccbf
+  - message:assistant-msg-0b16d1f5-3921-6c86-9d96-eb244cf0a39d
+  - message:assistant-msg-a58b071c-d0cc-8e13-d0f0-ff75aa3a8421
+  - message:assistant-msg-ad7f9fcb-8a1d-d943-d87d-5dd5e9ee0553
+  - load_evidence audit rollup
+  measurement:
+    proxy_metric_id: objective_success_rate
+    success_criterion: In post-install runs, blocked cloud-browser tasks are reported with the named blocker on the first attempt instead of repeated identical retries, and no run repeats the same deterministic reload loop (429 or 403, missing wallet extension, login wall) more than twice.
+    window_days: 14
+  needs_review: false
+  rationale: 'The same shape failed repeatedly in the window. WoWo registration returned 429 then 403 on every load for about 1.5 hours of reloads while the assistant promised to keep trying until it worked. The Monad Alchemy faucet captcha failed 5 times with the Send button staying disabled. The Tzero connect button was clicked 6 times with no wallet extension in the cloud browser, and the Superbridge bridge failed the same way. Faucet claims failed across five providers for the same wallet, captcha, and login reasons. The Lobinhood game was described as being tested before it had loaded, then crashed at 97 percent loading and no screenshot ever reached the assistant. The load_evidence rollup records 33 terminal subagent and tool failures, many of them browser_open failures. No existing skill covers this: muse.skill_search for browser captcha, wallet extension pre-flight, faucet claiming, and transient key signing returned no matching skill, and there are 0 custom skills. The proposed skill changes the mechanism directly: check the blocker before claiming work, prove the page loaded before reporting progress, treat deterministic blocks as unretryable after one failed attempt plus one different check, allow fresh captcha attempts up to five, and hand over with one exact user-device step. The custom.x connector doc was checked and is still an unfilled template, but it is not marked managed in the inventory, so it is out of scope for this loop and is not proposed here.'
+  review_after: 2026-11-26T12:10:08.505465+00:00
+  reviewed_at: 2026-11-12T12:10:08.505465+00:00
+  run_id: sirun_854c2fb2b23d4be397c9e0ce8ac5cc86

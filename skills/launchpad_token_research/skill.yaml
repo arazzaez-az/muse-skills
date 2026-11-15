@@ -1,0 +1,19 @@
+name: launchpad_token_research
+title: Launchpad token research
+description: Research a launchpad token's holder distribution, activity and liftoff state before a buy decision, and report only verified figures.
+category: Finance
+include_in_prompt: false
+skill_improvement:
+  managed: true
+  status: active
+  evidence_handles:
+  - '1794622283546'
+  measurement:
+    proxy_metric_id: objective_success_rate
+    success_criterion: No holder-distribution figure in a Tzero research run needs correction after a full Transfer-event check during the window, and no buy decision rests on an estimated holder share.
+    window_days: 14
+  needs_review: false
+  rationale: 'On 2026-11-13 the assistant first reported PINCH top holder at about 2.5 percent from last-100-minutes buyers only, then corrected it to 68.73 percent creator after a full Transfer-event check, with 5 holders and top five at 73.67 percent. The same flawed estimation method underlay the HRMD 77 percent and RRAB and LWOLF 76 percent figures, which were flagged unverified. A second lesson from the same window is that holder count does not equal activity: AeroWing and SuperVault had 24 holders each with top about 12 percent yet zero swaps in about 11 hours and flat identical sell quotes. This research runs daily in the 07:00 WIB Tzero prep, missions graduate within minutes of a scan, and a skill search found no existing skill covering on-chain holder-distribution research, so the full-event method needs to be saved as a reusable skill rather than re-derived per run.'
+  review_after: 2026-11-28T05:06:50.546882+00:00
+  reviewed_at: 2026-11-14T05:06:50.546882+00:00
+  run_id: sirun_969ab0aa4a444372bc8fdbde5fbf03d6
